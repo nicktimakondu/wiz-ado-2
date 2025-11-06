@@ -50,7 +50,7 @@ Calls Azure DevOps REST API
 ```
 Azure DevOps API receives request
     ↓
-Authenticates with PAT token
+Authenticates with Managed Identity
     ↓
 Creates User Story work item:
     - Title: "Wiz Vuln Findings - {issue.name}"
@@ -88,29 +88,27 @@ Function returns success response to Wiz:
 
 ### Environment Variables
 - `AZDO_ORG_URL`: Azure DevOps organization URL
-- `AZDO_PAT`: Personal Access Token (sensitive)
 - `AZDO_PROJECT`: Target project name
 - `APPINSIGHTS_INSTRUMENTATIONKEY`: Application Insights key
 
 ### Security Model
 ```
 ┌──────────────────────────────────────┐
-│ Network Layer                         │
+│ Network Layer                        │
 │  ├─ HTTPS Only                       │
 │  ├─ Optional: IP Restrictions        │
 │  └─ Optional: Function Key Auth      │
 └──────────────────────────────────────┘
            ↓
 ┌──────────────────────────────────────┐
-│ Application Layer                     │
+│ Application Layer                    │
 │  ├─ Input Validation                 │
 │  ├─ JSON Schema Validation           │
 │  └─ Error Handling                   │
 └──────────────────────────────────────┘
            ↓
 ┌──────────────────────────────────────┐
-│ Integration Layer                     │
-│  ├─ Azure DevOps PAT Auth            │
+│ Integration Layer                    │
 │  ├─ Project-level Permissions        │
 │  └─ Work Item API Access             │
 └──────────────────────────────────────┘
@@ -136,7 +134,6 @@ LOW             ───▶        4
 
 ### Configuration Errors (HTTP 500)
 - Missing Azure DevOps environment variables
-- Invalid PAT token
 - Project not found
 
 ### API Errors (HTTP 500)
