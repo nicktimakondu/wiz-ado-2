@@ -1,0 +1,3 @@
+azure-functions==1.18.0
+azure-devops==7.1.0b4
+azure-identity==1.15.0
