@@ -1,0 +1,14 @@
+# Copy this file to terraform.tfvars and fill in your actual values
+# DO NOT commit terraform.tfvars to version control!
+
+# Azure DevOps Organization URL
+# Example: https://dev.azure.com/mycompany
+azdo_org_url = "https://dev.azure.com/ntimakondu"
+
+# Azure DevOps Project Name
+# The project where User Story work items will be created
+azdo_project = "wiz-issues"
+
+# Note: This integration uses Managed Identity for authentication.
+# After deployment, you'll need to grant the managed identity access to Azure DevOps.
+# Instructions will be provided in the deployment output.
